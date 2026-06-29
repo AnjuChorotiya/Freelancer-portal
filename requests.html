@@ -50,29 +50,38 @@
     .page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 22px; }
     .page-head h2 { font-size: 24px; font-weight: 700; } .page-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
-    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
-    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-    .stat .label { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
-    .stat .num { font-size: 28px; font-weight: 700; margin: 8px 0; letter-spacing: -0.5px; line-height: 1; }
-    .stat .sub { font-size: 12.5px; color: var(--text-muted); }
-
-    .panel { background: var(--card); border-radius: 14px; padding: 22px 26px; }
-    .panel-title { font-size: 17px; font-weight: 700; margin-bottom: 18px; }
-    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
-    .search { position: relative; flex: 1; max-width: 560px; }
+    /* Wisemonk table card */
+    .panel { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(16,24,40,0.06), 0 1px 2px rgba(16,24,40,0.04); overflow: hidden; }
+    .panel-title { font-size: 17px; font-weight: 700; padding: 20px 24px 0; }
+    .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
+    .search { position: relative; flex: 1 1 280px; max-width: 460px; }
     .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
-    .search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
-    .search input:hover { border-color: var(--border-strong); } .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
-    .filter { height: 44px; padding: 0 40px 0 14px; border: 1px solid var(--border); border-radius: 8px; background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236A7282' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>") no-repeat right 14px center / 16px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; outline: none; appearance: none; }
-    .filter:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
+    .search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--border-strong); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .search input::placeholder { color: var(--text-muted); }
+    .search input:hover { border-color: var(--border-strong); } .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
+    .toolbar-filters { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+    .wm-dropdown { position: relative; }
+    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 150px; height: 44px; padding: 0 14px; border: 1px solid var(--border-strong); background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+    .wm-dd-trigger:hover { border-color: var(--neutral-badge); }
+    .wm-dropdown.is-open .wm-dd-trigger { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
+    .wm-dd-trigger svg { width: 16px; height: 16px; color: var(--text-muted); transition: transform 0.2s; }
+    .wm-dropdown.is-open .wm-dd-trigger svg { transform: rotate(180deg); }
+    .wm-dd-menu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 200px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 6px; box-shadow: 0 14px 34px -14px rgba(16,24,40,0.35); display: none; z-index: 50; }
+    .wm-dropdown.is-open .wm-dd-menu { display: block; }
+    .wm-dd-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 9px 12px; border: none; background: transparent; border-radius: 6px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; text-align: left; }
+    .wm-dd-item:hover { background: var(--muted-bg); }
+    .wm-dd-item.selected { background: var(--brand-50); color: var(--brand-600); font-weight: 700; }
+    .wm-dd-item svg { width: 16px; height: 16px; color: var(--brand-600); opacity: 0; flex-shrink: 0; }
+    .wm-dd-item.selected svg { opacity: 1; }
 
     .tbl { width: 100%; border-collapse: collapse; }
-    .tbl thead th { text-align: left; font-size: 13px; font-weight: 500; color: var(--text-muted); padding: 12px 16px; background: var(--muted-bg); }
-    .tbl thead th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
-    .tbl thead th:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: right; }
-    .tbl tbody td { padding: 16px; font-size: 14px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .tbl thead { background: #F9FAFB; }
+    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: var(--text-muted); padding: 12px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tbl thead th:last-child { text-align: right; }
+    .tbl tbody td { padding: 18px 24px; font-size: 14px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); vertical-align: middle; }
     .tbl tbody tr:last-child td { border-bottom: none; }
-    .tbl tbody tr:hover { background: #FAFBFD; }
+    .tbl tbody tr:hover { background: #F9FAFB; }
     .tbl td.muted { color: var(--text-muted); } .tbl td.actions { text-align: right; }
     .inv-link { color: var(--brand-600); font-weight: 700; }
 
@@ -121,6 +130,7 @@
     <symbol id="ic-close" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-search" viewBox="0 0 24 24" fill="none"><path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 22L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="19" cy="12" r="1.7" fill="currentColor"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <div class="app">
@@ -151,33 +161,40 @@
             <button class="btn btn-primary" id="reqPayBtn"><svg viewBox="0 0 24 24"><use href="#ic-add"/></svg>Request payment</button>
           </div>
 
-          <div class="stat-grid">
-            <div class="stat"><div class="label">Total outstanding</div><div class="num">$4,500.00</div><div class="sub">Invoices awaiting payment</div></div>
-            <div class="stat"><div class="label">Processing</div><div class="num">$8000.00</div><div class="sub">Funds received, settlement in progress</div></div>
-            <div class="stat"><div class="label">Paid this month</div><div class="num">$3,600.00</div><div class="sub">Across 4 invoices</div></div>
-          </div>
-
           <div class="panel">
             <div class="panel-title">Invoice history</div>
             <div class="toolbar">
-              <div class="search"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg><input type="text" placeholder="Search" id="searchInput"></div>
-              <select class="filter" id="statusFilter">
-                <option value="">All status</option>
-                <option value="paid">Paid</option>
-                <option value="processing">Processing</option>
-                <option value="awaiting">Awaiting</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-              </select>
+              <div class="search"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg><input type="text" placeholder="Search invoices" id="searchInput"></div>
+              <div class="toolbar-filters">
+                <div class="wm-dropdown" data-filter="client">
+                  <button class="wm-dd-trigger" type="button"><span class="wm-dd-label">All clients</span><svg viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></button>
+                  <div class="wm-dd-menu">
+                    <button class="wm-dd-item selected" data-value="">All clients<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="techcorp">TechCorp Solutions Inc<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="greenenergy">GreenEnergy Corp<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  </div>
+                </div>
+                <div class="wm-dropdown" data-filter="status">
+                  <button class="wm-dd-trigger" type="button"><span class="wm-dd-label">All status</span><svg viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></button>
+                  <div class="wm-dd-menu">
+                    <button class="wm-dd-item selected" data-value="">All status<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="paid">Paid<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="processing">Processing<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="awaiting">Awaiting<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="approved">Approved<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                    <button class="wm-dd-item" data-value="rejected">Rejected<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  </div>
+                </div>
+              </div>
             </div>
             <table class="tbl">
               <thead><tr><th>Invoice</th><th>Client</th><th>Issue date</th><th>Credit date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody>
-                <tr data-status="paid"><td><a href="#" class="inv-link">INV-2026-098</a></td><td>TechCorp Solutions Inc</td><td class="muted">Oct 24, 2025</td><td class="muted">Oct 28, 2025</td><td>$4,500.00</td><td><span class="badge green">Paid</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="processing"><td><a href="#" class="inv-link">INV-2026-099</a></td><td>TechCorp Solutions Inc</td><td class="muted">Nov 15, 2025</td><td class="muted">Nov 21, 2025</td><td>$3,200.00</td><td><span class="badge orange">Processing</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="awaiting"><td><a href="#" class="inv-link">INV-2026-100</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 01, 2025</td><td class="muted">Dec 07, 2025</td><td>$8,750.00</td><td><span class="badge amber">Awaiting</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="approved"><td><a href="#" class="inv-link">INV-2026-101</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 15, 2025</td><td class="muted">Dec 18, 2025</td><td>$12,300.00</td><td><span class="badge blue">Approved</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="rejected"><td><a href="#" class="inv-link">INV-2026-102</a></td><td>GreenEnergy Corp</td><td class="muted">Dec 10, 2025</td><td class="muted">Dec 14, 2025</td><td>$9,500.00</td><td><span class="badge neutral">Rejected</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="paid" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-098</a></td><td>TechCorp Solutions Inc</td><td class="muted">Oct 24, 2025</td><td class="muted">Oct 28, 2025</td><td>$4,500.00</td><td><span class="badge green">Paid</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="processing" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-099</a></td><td>TechCorp Solutions Inc</td><td class="muted">Nov 15, 2025</td><td class="muted">Nov 21, 2025</td><td>$3,200.00</td><td><span class="badge orange">Processing</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="awaiting" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-100</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 01, 2025</td><td class="muted">Dec 07, 2025</td><td>$8,750.00</td><td><span class="badge amber">Awaiting</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="approved" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-101</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 15, 2025</td><td class="muted">Dec 18, 2025</td><td>$12,300.00</td><td><span class="badge blue">Approved</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="rejected" data-client="greenenergy"><td><a href="#" class="inv-link">INV-2026-102</a></td><td>GreenEnergy Corp</td><td class="muted">Dec 10, 2025</td><td class="muted">Dec 14, 2025</td><td>$9,500.00</td><td><span class="badge neutral">Rejected</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
               </tbody>
             </table>
           </div>
@@ -212,20 +229,40 @@
   </div>
 
   <script>
-    // Search + status filter
+    // Search + filter dropdowns
     const searchInput = document.getElementById('searchInput');
-    const statusFilter = document.getElementById('statusFilter');
+    const filters = {};
     function applyFilters(){
       const q = searchInput.value.toLowerCase();
-      const st = statusFilter.value;
       document.querySelectorAll('.tbl tbody tr').forEach(tr => {
         const okText = tr.textContent.toLowerCase().includes(q);
-        const okStatus = !st || tr.dataset.status === st;
-        tr.style.display = (okText && okStatus) ? '' : 'none';
+        const okFilters = Object.entries(filters).every(([k, v]) => !v || tr.dataset[k] === v);
+        tr.style.display = (okText && okFilters) ? '' : 'none';
       });
     }
     searchInput.addEventListener('input', applyFilters);
-    statusFilter.addEventListener('change', applyFilters);
+
+    document.querySelectorAll('.wm-dropdown').forEach(dd => {
+      const trigger = dd.querySelector('.wm-dd-trigger');
+      const label = dd.querySelector('.wm-dd-label');
+      const key = dd.dataset.filter;
+      filters[key] = '';
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = dd.classList.contains('is-open');
+        document.querySelectorAll('.wm-dropdown.is-open').forEach(o => o.classList.remove('is-open'));
+        if (!open) dd.classList.add('is-open');
+      });
+      dd.querySelectorAll('.wm-dd-item').forEach(item => item.addEventListener('click', e => {
+        e.stopPropagation();
+        dd.querySelectorAll('.wm-dd-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        label.textContent = item.childNodes[0].textContent.trim();
+        filters[key] = item.dataset.value;
+        dd.classList.remove('is-open');
+        applyFilters();
+      }));
+    });
 
     // Row menu
     const rowMenu = document.getElementById('rowMenu');
@@ -237,7 +274,7 @@
       rowMenu.style.left = (r.right - rowMenu.offsetWidth) + 'px';
     }));
     rowMenu.addEventListener('click', e => { e.stopPropagation(); rowMenu.hidden = true; });
-    document.addEventListener('click', () => { rowMenu.hidden = true; });
+    document.addEventListener('click', () => { rowMenu.hidden = true; document.querySelectorAll('.wm-dropdown.is-open').forEach(o => o.classList.remove('is-open')); });
 
     // Modal
     function openModal(id){ document.getElementById(id).hidden = false; document.body.style.overflow = 'hidden'; }

@@ -51,24 +51,44 @@
     .btn-primary:disabled { background: #CBD5E1; cursor: not-allowed; }
     .btn-ghost { background: #fff; border: 1px solid var(--border); color: var(--text-secondary); } .btn-ghost:hover { background: var(--muted-bg); }
 
-    /* Panel + table */
-    .panel { background: var(--card); border-radius: 14px; padding: 26px 30px; }
-    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 22px; }
-    .panel-head h2 { font-size: 24px; font-weight: 700; }
+    /* Wisemonk table card */
+    .panel { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(16,24,40,0.06), 0 1px 2px rgba(16,24,40,0.04); overflow: hidden; }
+    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 22px 24px 4px; }
+    .panel-head h2 { font-size: 22px; font-weight: 700; }
     .panel-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
-    .search { position: relative; max-width: 380px; margin-bottom: 20px; }
-    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
-    .search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
-    .search input:hover { border-color: var(--border-strong); }
-    .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
 
+    .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
+    .search { position: relative; flex: 1 1 280px; max-width: 420px; }
+    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
+    .search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--border-strong); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .search input::placeholder { color: var(--text-muted); }
+    .search input:hover { border-color: var(--border-strong); }
+    .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
+    .toolbar-filters { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+    /* Filter dropdown */
+    .wm-dropdown { position: relative; }
+    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 150px; height: 44px; padding: 0 14px; border: 1px solid var(--border-strong); background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+    .wm-dd-trigger:hover { border-color: var(--neutral-badge); }
+    .wm-dropdown.is-open .wm-dd-trigger { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
+    .wm-dd-trigger svg { width: 16px; height: 16px; color: var(--text-muted); transition: transform 0.2s; }
+    .wm-dropdown.is-open .wm-dd-trigger svg { transform: rotate(180deg); }
+    .wm-dd-menu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 200px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 6px; box-shadow: 0 14px 34px -14px rgba(16,24,40,0.35); display: none; z-index: 50; }
+    .wm-dropdown.is-open .wm-dd-menu { display: block; }
+    .wm-dd-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 9px 12px; border: none; background: transparent; border-radius: 6px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; text-align: left; }
+    .wm-dd-item:hover { background: var(--muted-bg); }
+    .wm-dd-item.selected { background: var(--brand-50); color: var(--brand-600); font-weight: 700; }
+    .wm-dd-item svg { width: 16px; height: 16px; color: var(--brand-600); opacity: 0; flex-shrink: 0; }
+    .wm-dd-item.selected svg { opacity: 1; }
+
+    /* Wisemonk table */
     .tbl { width: 100%; border-collapse: collapse; }
-    .tbl thead th { text-align: left; font-size: 13px; font-weight: 500; color: var(--text-muted); padding: 12px 16px; background: var(--muted-bg); }
-    .tbl thead th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
-    .tbl thead th:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: right; }
-    .tbl tbody td { padding: 16px; font-size: 14px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .tbl thead { background: #F9FAFB; }
+    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: var(--text-muted); padding: 12px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tbl thead th:last-child { text-align: right; }
+    .tbl tbody td { padding: 18px 24px; font-size: 14px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); vertical-align: middle; }
     .tbl tbody tr:last-child td { border-bottom: none; }
-    .tbl tbody tr:hover { background: #FAFBFD; }
+    .tbl tbody tr:hover { background: #F9FAFB; }
     .tbl td.muted { color: var(--text-muted); font-weight: 500; }
     .tbl td.actions { text-align: right; }
 
@@ -116,6 +136,7 @@
     <symbol id="ic-close" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-search" viewBox="0 0 24 24" fill="none"><path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 22L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="19" cy="12" r="1.7" fill="currentColor"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <div class="app">
@@ -145,12 +166,32 @@
             <div><h2>Clients</h2><p>Manage clients agreements, billing models, and payment activity.</p></div>
             <button class="btn btn-primary" id="inviteBtn"><svg viewBox="0 0 24 24"><use href="#ic-add"/></svg>Invite Client</button>
           </div>
-          <div class="search"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg><input type="text" placeholder="Search" id="searchInput"></div>
+          <div class="toolbar">
+            <div class="search"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg><input type="text" placeholder="Search clients" id="searchInput"></div>
+            <div class="toolbar-filters">
+              <div class="wm-dropdown" data-filter="status">
+                <button class="wm-dd-trigger" type="button"><span class="wm-dd-label">All status</span><svg viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></button>
+                <div class="wm-dd-menu">
+                  <button class="wm-dd-item selected" data-value="">All status<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  <button class="wm-dd-item" data-value="invited">Invited<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  <button class="wm-dd-item" data-value="active">Active<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                </div>
+              </div>
+              <div class="wm-dropdown" data-filter="model">
+                <button class="wm-dd-trigger" type="button"><span class="wm-dd-label">All models</span><svg viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></button>
+                <div class="wm-dd-menu">
+                  <button class="wm-dd-item selected" data-value="">All models<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  <button class="wm-dd-item" data-value="dcp">DCP<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                  <button class="wm-dd-item" data-value="cor">CoR<svg viewBox="0 0 24 24"><use href="#ic-check"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
           <table class="tbl">
             <thead><tr><th>Client name</th><th>Model</th><th>Start date</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody>
-              <tr><td>TechCorp</td><td>DCP</td><td class="muted">N/A</td><td><span class="badge amber">Invited</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-              <tr><td>ACME Corp</td><td>CoR</td><td>Jan 12, 2026</td><td><span class="badge blue">Active</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+              <tr data-status="invited" data-model="dcp"><td>TechCorp</td><td>DCP</td><td class="muted">N/A</td><td><span class="badge amber">Invited</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+              <tr data-status="active" data-model="cor"><td>ACME Corp</td><td>CoR</td><td>Jan 12, 2026</td><td><span class="badge blue">Active</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
             </tbody>
           </table>
         </div>
@@ -185,11 +226,40 @@
   </div>
 
   <script>
-    // Search filter
+    // Search + filter dropdowns
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', () => {
+    const filters = {};
+    function applyFilters(){
       const q = searchInput.value.toLowerCase();
-      document.querySelectorAll('.tbl tbody tr').forEach(tr => { tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+      document.querySelectorAll('.tbl tbody tr').forEach(tr => {
+        const okText = tr.textContent.toLowerCase().includes(q);
+        const okFilters = Object.entries(filters).every(([k, v]) => !v || tr.dataset[k] === v);
+        tr.style.display = (okText && okFilters) ? '' : 'none';
+      });
+    }
+    searchInput.addEventListener('input', applyFilters);
+
+    // Wisemonk filter dropdowns
+    document.querySelectorAll('.wm-dropdown').forEach(dd => {
+      const trigger = dd.querySelector('.wm-dd-trigger');
+      const label = dd.querySelector('.wm-dd-label');
+      const key = dd.dataset.filter;
+      filters[key] = '';
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = dd.classList.contains('is-open');
+        document.querySelectorAll('.wm-dropdown.is-open').forEach(o => o.classList.remove('is-open'));
+        if (!open) dd.classList.add('is-open');
+      });
+      dd.querySelectorAll('.wm-dd-item').forEach(item => item.addEventListener('click', e => {
+        e.stopPropagation();
+        dd.querySelectorAll('.wm-dd-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        label.textContent = item.childNodes[0].textContent.trim();
+        filters[key] = item.dataset.value;
+        dd.classList.remove('is-open');
+        applyFilters();
+      }));
     });
 
     // Row action menu
@@ -197,13 +267,12 @@
     document.querySelectorAll('.kebab').forEach(k => k.addEventListener('click', e => {
       e.stopPropagation();
       const r = k.getBoundingClientRect();
-      rowMenu.style.top = (r.bottom + 6) + 'px';
-      rowMenu.style.left = (r.right - rowMenu.offsetWidth || r.right - 168) + 'px';
       rowMenu.hidden = false;
+      rowMenu.style.top = (r.bottom + 6) + 'px';
       rowMenu.style.left = (r.right - rowMenu.offsetWidth) + 'px';
     }));
     rowMenu.addEventListener('click', e => { e.stopPropagation(); rowMenu.hidden = true; });
-    document.addEventListener('click', () => { rowMenu.hidden = true; });
+    document.addEventListener('click', () => { rowMenu.hidden = true; document.querySelectorAll('.wm-dropdown.is-open').forEach(o => o.classList.remove('is-open')); });
 
     // Modal
     function openModal(id){ document.getElementById(id).hidden = false; document.body.style.overflow = 'hidden'; }
