@@ -20,7 +20,20 @@ Per-screen documentation (purpose · flow · validations) for the freelancer-fac
 
 ## freelancer-onboarding.html
 **Purpose:** A freelancer onboards themselves into Wisemonk (profile, payout, compliance details).
-**Flow:** Reached from `signup-country.html`. On completion the freelancer reaches their dashboard.
+**Flow:** Reached from `signup-country.html`. On completion the freelancer reaches `dashboard.html`.
+
+## dashboard.html
+**Purpose:** The freelancer home / workspace. Shows the at-a-glance summary once onboarding is done.
+**Sections:**
+- **Stat cards** — Upcoming payout, Pending request, Active clients.
+- **Available balance** — masked payout account + balance; the card *and* the (i) icon open the **Bank account details** modal.
+- **Recent Activity** — payment/request feed with status badges (Processed · Approved). Empty state shows a "No activity to display" illustration.
+**Actions / modals:**
+- **Request Payment** — modal (Client · Amount · Note); enabled when a client and a positive amount are set.
+- **Invite client** — modal (Client company name · Contact name · Work email); Invite enabled only when all three are filled and the email is valid.
+- **Bank account details** — read-only payout-account details with a Done button.
+**States:** add `?empty` to the URL for the new-freelancer empty state (zeroed stats, USD 0.00, empty activity).
+**Validations:** Invite requires a valid email; Request Payment requires client + amount > 0.
 
 ---
 

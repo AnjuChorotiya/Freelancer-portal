@@ -30,6 +30,7 @@ login.html → check-inbox.html → signup-role.html  → signup-country.html �
 | [signup-role.html](signup-role.html) | Role selection — "I'm looking to get paid" | https://anjuchorotiya.github.io/Freelancer-portal/signup-role.html |
 | [signup-country.html](signup-country.html) | Country selection (role=freelancer) | https://anjuchorotiya.github.io/Freelancer-portal/signup-country.html?role=freelancer |
 | [freelancer-onboarding.html](freelancer-onboarding.html) | Freelancer self-onboarding | https://anjuchorotiya.github.io/Freelancer-portal/freelancer-onboarding.html |
+| [dashboard.html](dashboard.html) | Freelancer home — payouts, balance, activity (modals: bank details · invite client · request payment). Empty state: `?empty` | https://anjuchorotiya.github.io/Freelancer-portal/dashboard.html |
 
 See [SCREENS.md](SCREENS.md) for per-screen detail and the screens still to build.
 
