@@ -98,6 +98,8 @@
     .field { margin-bottom: 16px; } .field label { display: block; font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
     .field input { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 15px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
     .field input:hover { border-color: var(--border-strong); } .field input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
+    .field input.invalid { border-color: var(--danger); box-shadow: 0 0 0 1.5px rgba(228,0,20,0.15); }
+    .field-error { display: none; margin-top: 6px; font-size: 12.5px; font-weight: 500; color: var(--danger); } .field-error.show { display: block; }
 
     @media (max-width: 860px) { .sidebar { display: none; } .app-header, .shell-content { padding-left: 16px; padding-right: 16px; } }
   </style>
@@ -171,9 +173,9 @@
         <button class="modal-close" data-close><svg viewBox="0 0 24 24"><use href="#ic-close"/></svg></button>
       </div>
       <div class="modal-body">
-        <div class="field"><label for="ivCompany">Client company name</label><input id="ivCompany" type="text" autocomplete="off"></div>
-        <div class="field"><label for="ivContact">Contact name</label><input id="ivContact" type="text" autocomplete="off"></div>
-        <div class="field"><label for="ivEmail">Work email</label><input id="ivEmail" type="email" autocomplete="off"></div>
+        <div class="field"><label for="ivCompany">Client company name</label><input id="ivCompany" type="text" autocomplete="off"><div class="field-error" data-for="ivCompany"></div></div>
+        <div class="field"><label for="ivContact">Contact name</label><input id="ivContact" type="text" autocomplete="off"><div class="field-error" data-for="ivContact"></div></div>
+        <div class="field"><label for="ivEmail">Work email</label><input id="ivEmail" type="email" autocomplete="off"><div class="field-error" data-for="ivEmail"></div></div>
       </div>
       <div class="modal-foot">
         <button class="btn btn-ghost" data-close>Cancel</button>
@@ -213,12 +215,35 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.overlay:not([hidden])').forEach(closeModal); });
     document.getElementById('inviteBtn').addEventListener('click', () => openModal('inviteModal'));
 
-    const ivFields = ['ivCompany','ivContact','ivEmail'].map(id => document.getElementById(id));
-    const inviteSubmit = document.getElementById('inviteSubmit');
     const validEmail = v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
-    function checkInvite(){ const [c,n,e] = ivFields.map(f => f.value.trim()); inviteSubmit.disabled = !(c && n && validEmail(e)); }
-    ivFields.forEach(f => f.addEventListener('input', checkInvite));
-    inviteSubmit.addEventListener('click', () => { alert('Invitation sent to ' + ivFields[2].value.trim()); closeModal(document.getElementById('inviteModal')); });
+    const inviteSubmit = document.getElementById('inviteSubmit');
+    const ivRules = {
+      ivCompany: { label: 'Client company name', test: v => !!v.trim(), msg: 'Client company name is required' },
+      ivContact: { label: 'Contact name', test: v => !!v.trim(), msg: 'Contact name is required' },
+      ivEmail:   { label: 'Work email', test: v => validEmail(v.trim()), msg: 'Enter a valid work email' },
+    };
+    const ivFields = Object.keys(ivRules).map(id => document.getElementById(id));
+    function errEl(id){ return document.querySelector('.field-error[data-for="' + id + '"]'); }
+    function validateField(id, force){
+      const input = document.getElementById(id), rule = ivRules[id], el = errEl(id);
+      const empty = !input.value.trim();
+      const touched = input.dataset.touched === '1' || force;
+      const ok = rule.test(input.value);
+      if (!ok && touched) { el.textContent = empty ? (rule.label + ' is required') : rule.msg; el.classList.add('show'); input.classList.add('invalid'); }
+      else { el.classList.remove('show'); input.classList.remove('invalid'); }
+      return ok;
+    }
+    function refreshInvite(){ inviteSubmit.disabled = !ivFields.every(f => ivRules[f.id].test(f.value)); }
+    ivFields.forEach(f => {
+      f.addEventListener('input', () => { validateField(f.id); refreshInvite(); });
+      f.addEventListener('blur', () => { f.dataset.touched = '1'; validateField(f.id); });
+    });
+    inviteSubmit.addEventListener('click', () => {
+      const allOk = ivFields.map(f => validateField(f.id, true)).every(Boolean);
+      if (!allOk) return;
+      alert('Invitation sent to ' + document.getElementById('ivEmail').value.trim());
+      closeModal(document.getElementById('inviteModal'));
+    });
   </script>
   <script defer src="https://anjuchorotiya.github.io/Freelancer-portal/wisemonk-ui/dev-notes.js"></script>
 </body>

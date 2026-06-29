@@ -85,7 +85,7 @@
     .btn-ghost:hover { background: var(--muted-bg); }
 
     .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 30px; }
-    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .stat { background: var(--card); border-radius: 12px; padding: 18px 20px; }
     .stat .label { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
     .stat .num { font-size: 30px; font-weight: 700; color: var(--text-primary); margin: 8px 0 8px; letter-spacing: -0.5px; line-height: 1; }
     .stat .sub { font-size: 12.5px; color: var(--text-muted); }
@@ -93,24 +93,27 @@
     .balance-head { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
     .balance-head .info { color: var(--text-muted); width: 18px; height: 18px; cursor: pointer; }
     .balance-head .info:hover { color: var(--brand-600); }
-    .balance-card { width: 300px; max-width: 100%; text-align: left; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: pointer; padding: 0; font: inherit; display: block; transition: border-color 0.15s, box-shadow 0.15s; }
-    .balance-card:hover { border-color: var(--border-strong); box-shadow: 0 6px 18px -10px rgba(0,0,0,0.25); }
+    .balance-card { width: 300px; max-width: 100%; text-align: left; background: var(--card); border-radius: 12px; overflow: hidden; cursor: pointer; padding: 0; font: inherit; display: block; transition: box-shadow 0.15s; }
+    .balance-card:hover { box-shadow: 0 6px 18px -10px rgba(0,0,0,0.25); }
     .balance-card .card-top { background: var(--brand-50); padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); font-weight: 500; letter-spacing: 1px; }
     .balance-card .card-top svg { width: 22px; height: 22px; color: var(--text-secondary); }
     .balance-card .card-amt { padding: 18px 16px; display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; color: var(--text-primary); }
     .flag { display: flex; } .flag svg { display: block; width: 26px; height: 26px; border-radius: 50%; }
 
-    .activity-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 24px; margin-top: 30px; }
-    .activity-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 4px; }
-    .activity-head h3 { font-size: 17px; font-weight: 700; color: var(--text-primary); }
-    .activity-head a { color: var(--brand-600); font-weight: 500; font-size: 14px; }
-    .act-row { display: grid; grid-template-columns: 16px 1fr auto 110px 96px; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .act-row:last-child { border-bottom: none; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brand-500); }
-    .act-title { font-weight: 500; font-size: 15px; color: var(--text-primary); }
+    .activity-card { background: var(--card); border-radius: 12px; padding: 4px 24px 6px; margin-top: 30px; }
+    .activity-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding: 18px 0 16px; }
+    .activity-head h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.1px; }
+    .activity-head a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand-500); font-weight: 600; font-size: 14px; transition: color 0.15s; }
+    .activity-head a:hover { color: var(--brand-700); } .activity-head a:hover span { text-decoration: underline; }
+    .activity-head a svg { width: 0; max-width: 0; height: 16px; opacity: 0; transform: translateX(-4px); transition: max-width 0.2s, opacity 0.2s, transform 0.2s; }
+    .activity-head a:hover svg { width: 16px; max-width: 16px; opacity: 1; transform: translateX(0); }
+    .act-row { display: grid; grid-template-columns: 18px 1fr 120px 110px 110px; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); }
+    .act-row:first-of-type { border-top: none; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand-500); }
+    .act-title { font-weight: 700; font-size: 14.5px; color: var(--text-primary); line-height: 1.3; }
     .act-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-    .act-amt { font-weight: 500; font-size: 15px; color: var(--text-primary); text-align: right; }
-    .badge { justify-self: start; padding: 3px 12px; border-radius: 100px; font-size: 12.5px; font-weight: 500; }
+    .act-amt { font-weight: 700; font-size: 14.5px; color: var(--text-primary); }
+    .badge { justify-self: start; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; }
     .badge.green { background: var(--success-bg); color: var(--success); }
     .badge.blue { background: var(--brand-50); color: var(--brand-600); }
     .act-date { font-size: 13px; color: var(--text-muted); white-space: nowrap; text-align: right; }
@@ -148,6 +151,9 @@
     .field textarea { height: auto; min-height: 80px; padding: 10px 12px; resize: vertical; }
     .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--border-strong); }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
+    .field input.invalid, .field select.invalid { border-color: var(--danger); box-shadow: 0 0 0 1.5px rgba(228,0,20,0.15); }
+    .field-error { display: none; margin-top: 6px; font-size: 12.5px; font-weight: 500; color: var(--danger); }
+    .field-error.show { display: block; }
     .field .amt-wrap { position: relative; }
     .field .amt-wrap .cur { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted); }
     .field .amt-wrap input { padding-left: 48px; }
@@ -171,6 +177,7 @@
     <symbol id="ic-dollar-square" viewBox="0 0 24 24" fill="none"><path d="M8.67188 14.3298C8.67188 15.6198 9.66188 16.6598 10.8919 16.6598H13.4019C14.4719 16.6598 15.3419 15.7498 15.3419 14.6298C15.3419 13.4098 14.8119 12.9798 14.0219 12.6998L9.99187 11.2998C9.20187 11.0198 8.67188 10.5898 8.67188 9.36984C8.67188 8.24984 9.54187 7.33984 10.6119 7.33984H13.1219C14.3519 7.33984 15.3419 8.37984 15.3419 9.66984" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H15C20 2 22 4 22 9V15C22 20 20 22 15 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-notification" viewBox="0 0 24 24" fill="none"><path d="M12.02 2.90991C8.70997 2.90991 6.01997 5.59991 6.01997 8.90991V11.7999C6.01997 12.4099 5.75997 13.3399 5.44997 13.8599L4.29997 15.7699C3.58997 16.9499 4.07997 18.2599 5.37997 18.6999C9.68997 20.1399 14.34 20.1399 18.65 18.6999C19.86 18.2999 20.39 16.8699 19.73 15.7699L18.58 13.8599C18.28 13.3399 18.02 12.4099 18.02 11.7999V8.90991C18.02 5.60991 15.32 2.90991 12.02 2.90991Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/><path d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/></symbol>
     <symbol id="ic-arrow-down" viewBox="0 0 24 24" fill="none"><path d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-arrow-right" viewBox="0 0 24 24" fill="none"><path d="M14.4301 5.92993L20.5001 11.9999L14.4301 18.0699" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 12H20.33" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-info-circle" viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.9945 16H12.0035" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-close" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="ic-add" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -212,7 +219,6 @@
               <p>Track your settlements, invoices, and client payments.</p>
             </div>
             <div class="dash-actions">
-              <button class="btn btn-primary" id="reqPayBtn"><svg viewBox="0 0 24 24"><use href="#ic-add"/></svg>Request Payment</button>
               <button class="btn btn-soft" id="inviteBtn"><svg viewBox="0 0 24 24"><use href="#ic-user-add"/></svg>Invite client</button>
             </div>
           </div>
@@ -247,7 +253,7 @@
           <div class="activity-card">
             <div class="activity-head">
               <h3>Recent Activity</h3>
-              <a href="#">View all</a>
+              <a href="#"><span>View all</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-arrow-right"/></svg></a>
             </div>
             <div id="activityList">
               <div class="act-row">
@@ -313,38 +319,13 @@
         <button class="modal-close" data-close><svg viewBox="0 0 24 24"><use href="#ic-close"/></svg></button>
       </div>
       <div class="modal-body">
-        <div class="field"><label for="ivCompany">Client company name</label><input id="ivCompany" type="text" autocomplete="off"></div>
-        <div class="field"><label for="ivContact">Contact name</label><input id="ivContact" type="text" autocomplete="off"></div>
-        <div class="field"><label for="ivEmail">Work email</label><input id="ivEmail" type="email" autocomplete="off"></div>
+        <div class="field"><label for="ivCompany">Client company name</label><input id="ivCompany" type="text" autocomplete="off"><div class="field-error" data-for="ivCompany"></div></div>
+        <div class="field"><label for="ivContact">Contact name</label><input id="ivContact" type="text" autocomplete="off"><div class="field-error" data-for="ivContact"></div></div>
+        <div class="field"><label for="ivEmail">Work email</label><input id="ivEmail" type="email" autocomplete="off"><div class="field-error" data-for="ivEmail"></div></div>
       </div>
       <div class="modal-foot split">
         <button class="btn btn-ghost" data-close>Cancel</button>
         <button class="btn btn-primary" id="inviteSubmit" disabled>Invite</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── Request payment modal ─── -->
-  <div class="overlay" id="reqModal" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reqTitle" style="max-width:460px">
-      <div class="modal-head">
-        <div class="m-title" id="reqTitle"><span class="m-ico"><svg viewBox="0 0 24 24"><use href="#ic-dollar-square"/></svg></span>Request Payment</div>
-        <button class="modal-close" data-close><svg viewBox="0 0 24 24"><use href="#ic-close"/></svg></button>
-      </div>
-      <div class="modal-body">
-        <div class="field"><label for="rqClient">Client</label>
-          <select id="rqClient"><option value="">Select a client</option><option>TechCorp</option><option>Acme Inc.</option></select>
-        </div>
-        <div class="field"><label for="rqAmount">Amount</label>
-          <div class="amt-wrap"><span class="cur">USD</span><input id="rqAmount" type="number" min="0" placeholder="0.00"></div>
-        </div>
-        <div class="field"><label for="rqNote">Note <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
-          <textarea id="rqNote" placeholder="What is this payment for?"></textarea>
-        </div>
-      </div>
-      <div class="modal-foot split">
-        <button class="btn btn-ghost" data-close>Cancel</button>
-        <button class="btn btn-primary" id="reqSubmit" disabled>Send request</button>
       </div>
     </div>
   </div>
@@ -362,24 +343,42 @@
     document.getElementById('balanceCard').addEventListener('click', () => openModal('bankModal'));
     document.getElementById('balanceInfo').addEventListener('click', e => { e.stopPropagation(); openModal('bankModal'); });
     document.getElementById('inviteBtn').addEventListener('click', () => openModal('inviteModal'));
-    document.getElementById('reqPayBtn').addEventListener('click', () => openModal('reqModal'));
 
-    // ── Invite client: enable when all fields filled + valid email ──
-    const ivFields = ['ivCompany','ivContact','ivEmail'].map(id => document.getElementById(id));
+    // ── Invite client validation ──
+    const validEmail = v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
     const inviteSubmit = document.getElementById('inviteSubmit');
-    function validEmail(v){ return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); }
-    function checkInvite(){
-      const [c, n, e] = ivFields.map(f => f.value.trim());
-      inviteSubmit.disabled = !(c && n && validEmail(e));
+    const ivRules = {
+      ivCompany: { label: 'Client company name', test: v => !!v.trim(), msg: 'Client company name is required' },
+      ivContact: { label: 'Contact name', test: v => !!v.trim(), msg: 'Contact name is required' },
+      ivEmail:   { label: 'Work email', test: v => validEmail(v.trim()), msg: 'Enter a valid work email' },
+    };
+    const ivFields = Object.keys(ivRules).map(id => document.getElementById(id));
+    function errEl(id){ return document.querySelector('.field-error[data-for="' + id + '"]'); }
+    function validateField(id, force){
+      const input = document.getElementById(id), rule = ivRules[id], el = errEl(id);
+      const empty = !input.value.trim();
+      // Only flag once the user has interacted (touched) or on a forced submit check
+      const touched = input.dataset.touched === '1' || force;
+      const ok = rule.test(input.value);
+      if (!ok && touched) {
+        el.textContent = empty ? (rule.label + ' is required') : rule.msg;
+        el.classList.add('show'); input.classList.add('invalid');
+      } else {
+        el.classList.remove('show'); input.classList.remove('invalid');
+      }
+      return ok;
     }
-    ivFields.forEach(f => f.addEventListener('input', checkInvite));
-    inviteSubmit.addEventListener('click', () => { alert('Invitation sent to ' + ivFields[2].value.trim()); closeModal(document.getElementById('inviteModal')); });
-
-    // ── Request payment: enable when client + amount set ──
-    const rqClient = document.getElementById('rqClient'), rqAmount = document.getElementById('rqAmount'), reqSubmit = document.getElementById('reqSubmit');
-    function checkReq(){ reqSubmit.disabled = !(rqClient.value && parseFloat(rqAmount.value) > 0); }
-    [rqClient, rqAmount].forEach(f => f.addEventListener('input', checkReq));
-    reqSubmit.addEventListener('click', () => { alert('Payment request sent to ' + rqClient.value); closeModal(document.getElementById('reqModal')); });
+    function refreshInvite(){ inviteSubmit.disabled = !ivFields.every(f => ivRules[f.id].test(f.value)); }
+    ivFields.forEach(f => {
+      f.addEventListener('input', () => { validateField(f.id); refreshInvite(); });
+      f.addEventListener('blur', () => { f.dataset.touched = '1'; validateField(f.id); });
+    });
+    inviteSubmit.addEventListener('click', () => {
+      const allOk = ivFields.map(f => validateField(f.id, true)).every(Boolean);
+      if (!allOk) return;
+      alert('Invitation sent to ' + document.getElementById('ivEmail').value.trim());
+      closeModal(document.getElementById('inviteModal'));
+    });
 
     // ── Empty state (?empty) ──
     if (new URLSearchParams(location.search).has('empty')) {
