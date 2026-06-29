@@ -35,6 +35,22 @@ Per-screen documentation (purpose · flow · validations) for the freelancer-fac
 **States:** add `?empty` to the URL for the new-freelancer empty state (zeroed stats, USD 0.00, empty activity).
 **Validations:** Invite requires a valid email; Request Payment requires client + amount > 0.
 
+## clients.html
+**Purpose:** The freelancer's client list — agreements, billing models and status at a glance.
+**Table:** Client name · Model (DCP / CoR) · Start date · Status (Invited · Active) · row actions (kebab → view / edit / remove).
+**Actions:** **Invite Client** opens the invite modal (company · contact · work email; enabled when all filled + valid email). Search filters rows live.
+
+## requests.html (Invoices)
+**Purpose:** Track invoices raised to clients and their payment status. Nav label is **Requests**; the page is titled **Invoices**.
+**Stats:** Total outstanding · Processing · Paid this month.
+**Table — Invoice history:** Invoice # (link) · Client · Issue date · Credit date · Amount · Status (Paid · Processing · Awaiting · Approved · Rejected) · row actions.
+**Controls:** live search + **All status** dropdown (filters the table by status). **Request payment** opens the request modal (client · amount · note; enabled when client + amount > 0).
+
+## payments.html
+**Purpose:** History of settled earnings paid out to the freelancer.
+**Table:** Payment date · Currency · Amount · row actions (view receipt / download statement).
+**Controls:** live search + **All time** date-range selector.
+
 ---
 
 ## To build

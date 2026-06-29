@@ -31,6 +31,11 @@ login.html → check-inbox.html → signup-role.html  → signup-country.html �
 | [signup-country.html](signup-country.html) | Country selection (role=freelancer) | https://anjuchorotiya.github.io/Freelancer-portal/signup-country.html?role=freelancer |
 | [freelancer-onboarding.html](freelancer-onboarding.html) | Freelancer self-onboarding | https://anjuchorotiya.github.io/Freelancer-portal/freelancer-onboarding.html |
 | [dashboard.html](dashboard.html) | Freelancer home — payouts, balance, activity (modals: bank details · invite client · request payment). Empty state: `?empty` | https://anjuchorotiya.github.io/Freelancer-portal/dashboard.html |
+| [clients.html](clients.html) | Clients list — name / model / start date / status, search, invite-client modal | https://anjuchorotiya.github.io/Freelancer-portal/clients.html |
+| [requests.html](requests.html) | Invoices — outstanding/processing/paid stats, invoice history table, search + status filter, request-payment modal | https://anjuchorotiya.github.io/Freelancer-portal/requests.html |
+| [payments.html](payments.html) | Payments — earnings table (date / currency / amount), search + date range | https://anjuchorotiya.github.io/Freelancer-portal/payments.html |
+
+Workspace nav across the portal: **Home** (dashboard) · **Clients** · **Requests** (Invoices) · **Payments**.
 
 See [SCREENS.md](SCREENS.md) for per-screen detail and the screens still to build.
 

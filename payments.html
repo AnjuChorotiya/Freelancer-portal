@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments — Wisemonk</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-50: #EBF2FF; --brand-100: #CCDEFF; --brand-500: #3080FF; --brand-600: #155DFC; --brand-700: #0B43B8;
+      --bg: #F6F9FF; --card: #FFFFFF; --border: #E5E7EB; --border-strong: #D1D5DB;
+      --text-primary: #1F2937; --text-secondary: #4A5565; --text-muted: #6A7282; --muted-bg: #F4F6F9; --danger: #E40014;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Satoshi', sans-serif; font-weight: 500; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    [hidden] { display: none !important; }
+
+    .app { display: flex; min-height: 100vh; }
+    .sidebar { width: 240px; flex-shrink: 0; background: var(--card); padding: 30px 20px; display: flex; flex-direction: column; gap: 32px; }
+    .sidebar-logo { display: flex; align-items: center; height: 26px; overflow: hidden; }
+    .sidebar-logo img { height: 56px; width: auto; margin-top: -30px; display: block; }
+    .nav-section { display: flex; flex-direction: column; }
+    .nav-title { font-weight: 500; font-size: 12px; letter-spacing: 0.5px; color: var(--text-muted); padding: 8px; margin-bottom: 2px; }
+    .nav-link { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 10px; border-radius: 8px; font-weight: 500; font-size: 15px; color: var(--text-secondary); transition: background 0.15s, color 0.15s; }
+    .nav-link:hover { background: var(--muted-bg); }
+    .nav-link.active { background: var(--brand-50); color: var(--brand-600); }
+    .nav-link.active .nav-icon { color: var(--brand-600); }
+    .nav-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--text-muted); display: flex; } .nav-icon svg { width: 20px; height: 20px; }
+    .main-col { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .app-header { display: flex; align-items: center; justify-content: space-between; height: 80px; padding: 0 40px; background: var(--bg); }
+    .app-header h1 { font-size: 23px; font-weight: 700; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .bell-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: transparent; border: none; color: var(--text-secondary); cursor: pointer; }
+    .bell-btn:hover { background: rgba(0,0,0,0.04); } .bell-btn svg { width: 22px; height: 22px; }
+    .user-chip { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 4px 8px 4px 4px; border-radius: 100px; }
+    .user-chip:hover { background: rgba(0,0,0,0.04); }
+    .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--brand-500); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+    .user-name { font-weight: 500; font-size: 15px; } .user-chev { width: 16px; height: 16px; color: var(--text-muted); }
+    .shell-content { flex: 1; padding: 8px 40px 64px; overflow-y: auto; }
+
+    .panel { background: var(--card); border-radius: 14px; padding: 26px 30px; max-width: 1180px; }
+    .panel-head { margin-bottom: 22px; } .panel-head h2 { font-size: 24px; font-weight: 700; } .panel-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
+    .search { position: relative; flex: 1; max-width: 540px; }
+    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
+    .search input { width: 100%; height: 46px; padding: 0 14px 0 42px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .search input:hover { border-color: var(--border-strong); } .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 1.5px var(--brand-100); }
+    .daterange { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border: 1px solid var(--border); border-radius: 8px; background: #fff; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; }
+    .daterange:hover { border-color: var(--border-strong); }
+    .daterange svg { width: 18px; height: 18px; color: var(--text-muted); } .daterange .chev { width: 16px; height: 16px; }
+
+    .tbl { width: 100%; border-collapse: collapse; }
+    .tbl thead th { text-align: left; font-size: 13px; font-weight: 500; color: var(--text-muted); padding: 14px 16px; background: var(--muted-bg); }
+    .tbl thead th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+    .tbl thead th:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; text-align: right; }
+    .tbl tbody td { padding: 18px 16px; font-size: 15px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); }
+    .tbl tbody tr:last-child td { border-bottom: none; } .tbl tbody tr:hover { background: #FAFBFD; }
+    .tbl td.actions { text-align: right; }
+    .kebab { width: 32px; height: 32px; border: none; background: transparent; border-radius: 8px; cursor: pointer; color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; }
+    .kebab:hover { background: var(--muted-bg); } .kebab svg { width: 20px; height: 20px; }
+    .row-menu { position: fixed; z-index: 90; background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 14px 34px -14px rgba(16,24,40,0.35); padding: 6px; min-width: 168px; }
+    .row-menu[hidden] { display: none; }
+    .rm-item { display: block; width: 100%; text-align: left; padding: 9px 12px; border: none; background: transparent; border-radius: 7px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; }
+    .rm-item:hover { background: var(--muted-bg); }
+
+    @media (max-width: 860px) { .sidebar { display: none; } .app-header, .shell-content { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="ic-home-2" viewBox="0 0 24 24" fill="none"><path d="M9.02 2.84004L3.63 7.04004C2.73 7.74004 2 9.23004 2 10.36V17.77C2 20.09 3.89 21.99 6.21 21.99H17.79C20.11 21.99 22 20.09 22 17.78V10.5C22 9.29004 21.19 7.74004 20.2 7.05004L14.02 2.72004C12.62 1.74004 10.37 1.79004 9.02 2.84004Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17.99V14.99" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-user" viewBox="0 0 24 24" fill="none"><path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-receipt-text" viewBox="0 0 24 24" fill="none"><path d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 7V21C2 21.83 2.93998 22.3 3.59998 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.28998 22.29C8.67998 22.68 9.32002 22.68 9.71002 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 9H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.75 13H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-dollar-square" viewBox="0 0 24 24" fill="none"><path d="M8.67188 14.3298C8.67188 15.6198 9.66188 16.6598 10.8919 16.6598H13.4019C14.4719 16.6598 15.3419 15.7498 15.3419 14.6298C15.3419 13.4098 14.8119 12.9798 14.0219 12.6998L9.99187 11.2998C9.20187 11.0198 8.67188 10.5898 8.67188 9.36984C8.67188 8.24984 9.54187 7.33984 10.6119 7.33984H13.1219C14.3519 7.33984 15.3419 8.37984 15.3419 9.66984" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H15C20 2 22 4 22 9V15C22 20 20 22 15 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-notification" viewBox="0 0 24 24" fill="none"><path d="M12.02 2.90991C8.70997 2.90991 6.01997 5.59991 6.01997 8.90991V11.7999C6.01997 12.4099 5.75997 13.3399 5.44997 13.8599L4.29997 15.7699C3.58997 16.9499 4.07997 18.2599 5.37997 18.6999C9.68997 20.1399 14.34 20.1399 18.65 18.6999C19.86 18.2999 20.39 16.8699 19.73 15.7699L18.58 13.8599C18.28 13.3399 18.02 12.4099 18.02 11.7999V8.90991C18.02 5.60991 15.32 2.90991 12.02 2.90991Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/><path d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"/></symbol>
+    <symbol id="ic-arrow-down" viewBox="0 0 24 24" fill="none"><path d="M19.9201 8.94995L13.4001 15.47C12.6301 16.24 11.3701 16.24 10.6001 15.47L4.08008 8.94995" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-search" viewBox="0 0 24 24" fill="none"><path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 22L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none"><path d="M8 2V5M16 2V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="4.5" width="18" height="17" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 9.5H21" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="ic-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="19" cy="12" r="1.7" fill="currentColor"/></symbol>
+  </svg>
+
+  <div class="app">
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-logo"><img src="wisemonk_logo_final.png" alt="Wisemonk"></a>
+      <nav class="nav-section">
+        <div class="nav-title">WORKSPACE</div>
+        <a href="dashboard.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24"><use href="#ic-home-2"/></svg></span>Home</a>
+        <a href="clients.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24"><use href="#ic-user"/></svg></span>Clients</a>
+        <a href="requests.html" class="nav-link"><span class="nav-icon"><svg viewBox="0 0 24 24"><use href="#ic-receipt-text"/></svg></span>Requests</a>
+        <a href="payments.html" class="nav-link active"><span class="nav-icon"><svg viewBox="0 0 24 24"><use href="#ic-dollar-square"/></svg></span>Payments</a>
+      </nav>
+    </aside>
+
+    <div class="main-col">
+      <header class="app-header">
+        <h1>Welcome back!</h1>
+        <div class="header-right">
+          <button class="bell-btn" aria-label="Notifications"><svg viewBox="0 0 24 24"><use href="#ic-notification"/></svg></button>
+          <div class="user-chip"><span class="user-avatar">SJ</span><span class="user-name">Rahul</span><svg class="user-chev" viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></div>
+        </div>
+      </header>
+
+      <div class="shell-content">
+        <div class="panel">
+          <div class="panel-head"><h2>Payments</h2><p>Manage and track your earnings and payment</p></div>
+          <div class="toolbar">
+            <div class="search"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg><input type="text" placeholder="Search" id="searchInput"></div>
+            <button class="daterange" id="rangeBtn"><svg viewBox="0 0 24 24"><use href="#ic-calendar"/></svg><span>All time</span><svg class="chev" viewBox="0 0 24 24"><use href="#ic-arrow-down"/></svg></button>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Payment date</th><th>Currency</th><th>Amount</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>Sep 10, 2025</td><td>USD</td><td>$4,762.28</td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+              <tr><td>Aug 12, 2025</td><td>USD</td><td>$3,120.50</td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+              <tr><td>Jul 11, 2025</td><td>USD</td><td>$2,450.75</td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-menu" id="rowMenu" hidden>
+    <button class="rm-item">View receipt</button>
+    <button class="rm-item">Download statement</button>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase();
+      document.querySelectorAll('.tbl tbody tr').forEach(tr => { tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+    });
+
+    const rowMenu = document.getElementById('rowMenu');
+    document.querySelectorAll('.kebab').forEach(k => k.addEventListener('click', e => {
+      e.stopPropagation();
+      const r = k.getBoundingClientRect();
+      rowMenu.hidden = false;
+      rowMenu.style.top = (r.bottom + 6) + 'px';
+      rowMenu.style.left = (r.right - rowMenu.offsetWidth) + 'px';
+    }));
+    rowMenu.addEventListener('click', e => { e.stopPropagation(); rowMenu.hidden = true; });
+    document.addEventListener('click', () => { rowMenu.hidden = true; });
+  </script>
+  <script defer src="https://anjuchorotiya.github.io/Freelancer-portal/wisemonk-ui/dev-notes.js"></script>
+</body>
+</html>
