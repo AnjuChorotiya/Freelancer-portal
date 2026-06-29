@@ -68,7 +68,7 @@
     .shell-content { flex: 1; padding: 8px 40px 64px; overflow-y: auto; }
 
     /* ─── Dashboard ─── */
-    .dash { max-width: 1080px; }
+    .dash { width: 100%; }
     .dash-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
     .dash-head h2 { font-size: 22px; font-weight: 700; color: var(--text-primary); }
     .dash-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
@@ -98,7 +98,7 @@
     .balance-card .card-top { background: var(--brand-50); padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); font-weight: 500; letter-spacing: 1px; }
     .balance-card .card-top svg { width: 22px; height: 22px; color: var(--text-secondary); }
     .balance-card .card-amt { padding: 18px 16px; display: flex; align-items: center; gap: 12px; font-size: 28px; font-weight: 700; color: var(--text-primary); }
-    .flag { font-size: 26px; line-height: 1; }
+    .flag { display: flex; } .flag svg { display: block; width: 26px; height: 26px; border-radius: 50%; }
 
     .activity-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 24px; margin-top: 30px; }
     .activity-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 4px; }
@@ -241,7 +241,7 @@
           </div>
           <button class="balance-card" id="balanceCard">
             <div class="card-top"><svg viewBox="0 0 24 24"><use href="#ic-card"/></svg>&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4821</div>
-            <div class="card-amt"><span class="flag">🇺🇸</span><span id="balanceAmt">USD 23,500</span></div>
+            <div class="card-amt"><span class="flag"><svg viewBox="0 0 24 24" aria-label="USD"><defs><clipPath id="usFlag"><circle cx="12" cy="12" r="12"/></clipPath></defs><g clip-path="url(#usFlag)"><rect width="24" height="24" fill="#fff"/><g fill="#B22234"><rect y="0" width="24" height="1.85"/><rect y="3.69" width="24" height="1.85"/><rect y="7.38" width="24" height="1.85"/><rect y="11.08" width="24" height="1.85"/><rect y="14.77" width="24" height="1.85"/><rect y="18.46" width="24" height="1.85"/><rect y="22.15" width="24" height="1.85"/></g><rect width="10.5" height="12.92" fill="#3C3B6E"/><g fill="#fff"><circle cx="2" cy="2.2" r="0.7"/><circle cx="5.5" cy="2.2" r="0.7"/><circle cx="9" cy="2.2" r="0.7"/><circle cx="3.7" cy="4.5" r="0.7"/><circle cx="7.2" cy="4.5" r="0.7"/><circle cx="2" cy="6.7" r="0.7"/><circle cx="5.5" cy="6.7" r="0.7"/><circle cx="9" cy="6.7" r="0.7"/><circle cx="3.7" cy="9" r="0.7"/><circle cx="7.2" cy="9" r="0.7"/><circle cx="2" cy="11.2" r="0.7"/><circle cx="5.5" cy="11.2" r="0.7"/><circle cx="9" cy="11.2" r="0.7"/></g></g></svg></span><span id="balanceAmt">USD 23,500</span></div>
           </button>
 
           <div class="activity-card">
