@@ -41,8 +41,8 @@
 
     /* Wisemonk table card */
     .panel { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(16,24,40,0.06), 0 1px 2px rgba(16,24,40,0.04); overflow: hidden; }
-    .panel-head { padding: 22px 24px 4px; } .panel-head h2 { font-size: 22px; font-weight: 700; } .panel-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
-    .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
+    .panel-head { padding: 22px 20px 4px; } .panel-head h2 { font-size: 22px; font-weight: 700; } .panel-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 20px; flex-wrap: wrap; }
     .search { position: relative; flex: 1 1 280px; max-width: 460px; }
     .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: #9AA2B2; }
     .search input { width: 100%; height: 42px; padding: 0 14px 0 40px; border: 1px solid #DDE1E9; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
@@ -51,7 +51,7 @@
     .toolbar-filters { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
     .wm-dropdown { position: relative; }
-    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 160px; height: 42px; padding: 0 14px; border: 1px solid #DDE1E9; background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 160px; height: 42px; padding: 0 14px; border: 1px solid #DDE1E9; background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
     .wm-dd-trigger:hover { border-color: #9AA2B2; }
     .wm-dd-trigger > svg.lead { color: var(--text-muted); }
     .wm-dropdown.is-open .wm-dd-trigger { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(38,132,255,0.14); }
@@ -69,9 +69,9 @@
 
     .tbl { width: 100%; border-collapse: collapse; }
     .tbl thead { background: #F7F8FA; }
-    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: #9AA2B2; padding: 12px 24px; border-bottom: 1px solid #EEF0F4; }
+    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: #9AA2B2; padding: 12px 20px; border-bottom: 1px solid #EEF0F4; }
     .tbl thead th:last-child { text-align: right; }
-    .tbl tbody td { padding: 18px 24px; font-size: 14px; font-weight: 500; color: #363D4D; border-bottom: 1px solid #EEF0F4; }
+    .tbl tbody td { padding: 18px 20px; font-size: 14px; font-weight: 500; color: #363D4D; border-bottom: 1px solid #EEF0F4; }
     .tbl tbody tr:last-child td { border-bottom: none; } .tbl tbody tr:hover { background: #F7F8FA; }
     .tbl td.actions { text-align: right; }
     .kebab { width: 32px; height: 32px; border: none; background: transparent; border-radius: 8px; cursor: pointer; color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; }
