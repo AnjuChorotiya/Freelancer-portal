@@ -44,22 +44,22 @@
     .panel-head { padding: 22px 24px 4px; } .panel-head h2 { font-size: 22px; font-weight: 700; } .panel-head p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
     .toolbar { display: flex; align-items: center; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
     .search { position: relative; flex: 1 1 280px; max-width: 460px; }
-    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--text-muted); }
-    .search input { width: 100%; height: 44px; padding: 0 14px 0 42px; border: 1px solid var(--border-strong); border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
-    .search input::placeholder { color: var(--text-muted); }
-    .search input:hover { border-color: var(--border-strong); } .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
+    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: #9AA2B2; }
+    .search input { width: 100%; height: 42px; padding: 0 14px 0 40px; border: 1px solid #DDE1E9; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .search input::placeholder { color: #9AA2B2; }
+    .search input:hover { border-color: #DDE1E9; } .search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(38,132,255,0.14); }
     .toolbar-filters { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
     .wm-dropdown { position: relative; }
-    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 150px; height: 44px; padding: 0 14px; border: 1px solid var(--border-strong); background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
-    .wm-dd-trigger:hover { border-color: var(--text-muted); }
+    .wm-dd-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 160px; height: 42px; padding: 0 14px; border: 1px solid #DDE1E9; background: #fff; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text-primary); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+    .wm-dd-trigger:hover { border-color: #9AA2B2; }
     .wm-dd-trigger > svg.lead { color: var(--text-muted); }
-    .wm-dropdown.is-open .wm-dd-trigger { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(48,128,255,0.14); }
-    .wm-dd-trigger svg { width: 16px; height: 16px; color: var(--text-muted); transition: transform 0.2s; }
+    .wm-dropdown.is-open .wm-dd-trigger { border-color: var(--brand-500); box-shadow: 0 0 0 3px rgba(38,132,255,0.14); }
+    .wm-dd-trigger svg { width: 16px; height: 16px; color: #9AA2B2; transition: transform 0.2s; }
     .wm-dd-trigger svg.lead { transition: none; }
     .wm-dropdown.is-open .wm-dd-trigger svg.chev { transform: rotate(180deg); }
     .wm-dd-trigger .wm-dd-label { flex: 1; text-align: left; }
-    .wm-dd-menu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 200px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 6px; box-shadow: 0 14px 34px -14px rgba(16,24,40,0.35); display: none; z-index: 50; }
+    .wm-dd-menu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 220px; background: #fff; border: 1px solid #EEF0F4; border-radius: 12px; padding: 6px; box-shadow: 0 14px 34px -14px rgba(16,24,40,0.35); display: none; z-index: 50; }
     .wm-dropdown.is-open .wm-dd-menu { display: block; }
     .wm-dd-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 9px 12px; border: none; background: transparent; border-radius: 6px; font-family: inherit; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; text-align: left; }
     .wm-dd-item:hover { background: var(--muted-bg); }
