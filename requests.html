@@ -76,21 +76,25 @@
     .wm-dd-item.selected svg { opacity: 1; }
 
     .tbl { width: 100%; border-collapse: collapse; }
-    .tbl thead { background: #F9FAFB; }
-    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: var(--text-muted); padding: 12px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tbl thead { background: #F7F8FA; }
+    .tbl thead th { text-align: left; font-size: 12.5px; font-weight: 500; color: #9AA2B2; padding: 12px 24px; border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4; }
     .tbl thead th:last-child { text-align: right; }
-    .tbl tbody td { padding: 18px 24px; font-size: 14px; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .tbl tbody td { padding: 16px 24px; font-size: 14px; font-weight: 500; color: var(--text-secondary); border-bottom: 1px solid #EEF0F4; vertical-align: middle; }
     .tbl tbody tr:last-child td { border-bottom: none; }
-    .tbl tbody tr:hover { background: #F9FAFB; }
-    .tbl td.muted { color: var(--text-muted); } .tbl td.actions { text-align: right; }
+    .tbl tbody tr:hover { background: #F7F8FA; }
+    .tbl td.muted { color: #9AA2B2; } .tbl td.actions { text-align: right; }
     .inv-link { color: var(--brand-600); font-weight: 700; }
 
-    .badge { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 12.5px; font-weight: 500; }
-    .badge.amber { background: var(--amber-bg); color: var(--amber); }
-    .badge.orange { background: var(--amber-bg); color: var(--orange); }
-    .badge.blue { background: var(--brand-50); color: var(--brand-600); }
-    .badge.green { background: var(--success-bg); color: var(--success); }
-    .badge.neutral { background: var(--neutral-badge-bg); color: var(--neutral-badge); }
+    .wm-cell-name { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .wm-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--brand-500); color: #fff; font-weight: 700; font-size: 14px; }
+    .wm-avatar.muted { background: #9AA2B2; }
+
+    .wm-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 500; line-height: 1; background: #EEF0F4; color: #667085; }
+    .wm-pill--success { background: #E6F9F0; color: #027A48; }
+    .wm-pill--warning { background: #FFFAEB; color: #B54708; }
+    .wm-pill--danger  { background: #FFF1F0; color: #B42318; }
+    .wm-pill--info    { background: #E8F2FF; color: #1059BD; }
+    .wm-pill--neutral { background: #EEF0F4; color: #667085; }
 
     .kebab { width: 32px; height: 32px; border: none; background: transparent; border-radius: 8px; cursor: pointer; color: var(--text-secondary); display: inline-flex; align-items: center; justify-content: center; }
     .kebab:hover { background: var(--muted-bg); } .kebab svg { width: 20px; height: 20px; }
@@ -190,11 +194,11 @@
             <table class="tbl">
               <thead><tr><th>Invoice</th><th>Client</th><th>Issue date</th><th>Credit date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody>
-                <tr data-status="paid" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-098</a></td><td>TechCorp Solutions Inc</td><td class="muted">Oct 24, 2025</td><td class="muted">Oct 28, 2025</td><td>$4,500.00</td><td><span class="badge green">Paid</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="processing" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-099</a></td><td>TechCorp Solutions Inc</td><td class="muted">Nov 15, 2025</td><td class="muted">Nov 21, 2025</td><td>$3,200.00</td><td><span class="badge orange">Processing</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="awaiting" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-100</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 01, 2025</td><td class="muted">Dec 07, 2025</td><td>$8,750.00</td><td><span class="badge amber">Awaiting</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="approved" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-101</a></td><td>TechCorp Solutions Inc</td><td class="muted">Dec 15, 2025</td><td class="muted">Dec 18, 2025</td><td>$12,300.00</td><td><span class="badge blue">Approved</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
-                <tr data-status="rejected" data-client="greenenergy"><td><a href="#" class="inv-link">INV-2026-102</a></td><td>GreenEnergy Corp</td><td class="muted">Dec 10, 2025</td><td class="muted">Dec 14, 2025</td><td>$9,500.00</td><td><span class="badge neutral">Rejected</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="paid" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-098</a></td><td><div class="wm-cell-name"><span class="wm-avatar">T</span>TechCorp Solutions Inc</div></td><td class="muted">Oct 24, 2025</td><td class="muted">Oct 28, 2025</td><td>$4,500.00</td><td><span class="wm-pill wm-pill--success">Paid</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="processing" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-099</a></td><td><div class="wm-cell-name"><span class="wm-avatar">T</span>TechCorp Solutions Inc</div></td><td class="muted">Nov 15, 2025</td><td class="muted">Nov 21, 2025</td><td>$3,200.00</td><td><span class="wm-pill wm-pill--warning">Processing</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="awaiting" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-100</a></td><td><div class="wm-cell-name"><span class="wm-avatar">T</span>TechCorp Solutions Inc</div></td><td class="muted">Dec 01, 2025</td><td class="muted">Dec 07, 2025</td><td>$8,750.00</td><td><span class="wm-pill wm-pill--warning">Awaiting</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="approved" data-client="techcorp"><td><a href="#" class="inv-link">INV-2026-101</a></td><td><div class="wm-cell-name"><span class="wm-avatar">T</span>TechCorp Solutions Inc</div></td><td class="muted">Dec 15, 2025</td><td class="muted">Dec 18, 2025</td><td>$12,300.00</td><td><span class="wm-pill wm-pill--info">Approved</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
+                <tr data-status="rejected" data-client="greenenergy"><td><a href="#" class="inv-link">INV-2026-102</a></td><td><div class="wm-cell-name"><span class="wm-avatar muted">G</span>GreenEnergy Corp</div></td><td class="muted">Dec 10, 2025</td><td class="muted">Dec 14, 2025</td><td>$9,500.00</td><td><span class="wm-pill wm-pill--neutral">Rejected</span></td><td class="actions"><button class="kebab"><svg viewBox="0 0 24 24"><use href="#ic-more"/></svg></button></td></tr>
               </tbody>
             </table>
           </div>
